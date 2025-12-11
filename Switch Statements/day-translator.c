@@ -3,36 +3,49 @@
 int main()
 {
 
-    int number = 0;
+    double num1 = 0;
+    double num2 = 0;
+    char operator;
 
-    printf("\nEnter a number (1-7): ");
-    scanf("%d", &number);
+    printf("\nEnter a number: ");
+    scanf("%lf", &num1);
 
-    switch (number)
+    printf("\nEnter a second number: ");
+    scanf("%lf", &num2);
+
+    // remove newline character from input buffer
+    getchar();
+
+    printf("\nEnter an operator ( + - * / ): ");
+    scanf("%c", &operator);  
+
+    switch (operator)
     {
-        case 1:
-            printf("\nMonday");
+        case '+':
+            printf("\nResult: %.2lf", num1 + num2);
             break;
-        case 2:
-            printf("\nTuesday");
+        case '-':
+            printf("\nResult: %.2lf", num1 - num2);
             break;
-        case 3:
-            printf("\nWednesday");
+        case '*':
+            printf("\nResult: %.2lf", num1 * num2);
             break;
-        case 4:
-            printf("\nThursday");
-            break;
-        case 5:
-            printf("\nFriday");
-            break;
-        case 6:
-            printf("\nSaturday");
-            break;
-        case 7:
-            printf("\nSunday");
+        case '/':
+            if (num2 == 0)
+            {
+                printf("\nYou can't divide by zero");
+                
+                do
+                {
+                    printf("\nEnter a second number: ");
+                    scanf("%lf", &num2);
+                }while (num2 == 0);
+
+            }
+            printf("\nResult: %.2lf", num1 / num2);
             break;
         default:
-            printf("\nInvalid number! Please enter a number between 1-7");
+            printf("\nInvalid operator!");
     }
 
     return 0;
